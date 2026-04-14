@@ -3,17 +3,17 @@
 @import "tailwindcss";
 
 :root {
-  --page-bg: #f8f1ea;
-  --page-bg-strong: #f2e6dc;
-  --surface: rgba(255, 252, 248, 0.78);
+  --bg: #f6efe8;
+  --bg-soft: #fbf7f2;
+  --surface: rgba(255, 252, 248, 0.84);
   --surface-strong: #fffaf5;
-  --text-main: #3d2d28;
-  --text-soft: #715c54;
-  --stroke: rgba(91, 62, 52, 0.12);
-  --accent: #8f6356;
-  --accent-deep: #6f4a3f;
-  --accent-soft: #e3c8ba;
-  --shadow-soft: 0 24px 60px rgba(88, 57, 46, 0.12);
+  --text-main: #3b2923;
+  --text-soft: #725d56;
+  --stroke: rgba(98, 72, 61, 0.14);
+  --accent: #8f6558;
+  --accent-deep: #6f4f44;
+  --accent-soft: #d9beb3;
+  --shadow-lg: 0 28px 80px rgba(83, 56, 46, 0.14);
 }
 
 html {
@@ -23,9 +23,8 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(239, 218, 205, 0.9), transparent 32%),
-    radial-gradient(circle at top right, rgba(226, 203, 191, 0.52), transparent 26%),
-    linear-gradient(180deg, #fcf8f3 0%, var(--page-bg) 34%, #f7f0e8 100%);
+    radial-gradient(circle at top left, rgba(236, 213, 201, 0.9), transparent 30%),
+    linear-gradient(180deg, #fdfaf7 0%, var(--bg) 42%, #f8f1ea 100%);
   color: var(--text-main);
   font-family: "Manrope Variable", sans-serif;
   text-rendering: optimizeLegibility;
@@ -36,16 +35,16 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.2) 10%, rgba(0, 0, 0, 0.08) 100%);
-  opacity: 0.22;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 82px 82px;
+  opacity: 0.18;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 10%, rgba(0, 0, 0, 0.05) 100%);
 }
 
 ::selection {
-  background: rgba(143, 99, 86, 0.18);
+  background: rgba(143, 101, 88, 0.18);
 }
 
 h1,
@@ -55,8 +54,8 @@ h4,
 h5,
 h6 {
   font-family: "Cormorant Garamond Variable", serif;
-  letter-spacing: -0.03em;
-  line-height: 0.96;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
 p {
@@ -64,8 +63,7 @@ p {
 }
 
 a,
-button,
-summary {
+button {
   transition:
     color 180ms ease,
     background-color 180ms ease,
@@ -80,43 +78,42 @@ img {
 }
 
 :focus-visible {
-  outline: 2px solid rgba(143, 99, 86, 0.45);
+  outline: 2px solid rgba(143, 101, 88, 0.36);
   outline-offset: 3px;
 }
 
 .section-shell {
-  @apply px-5 py-20 sm:px-6 md:py-24 lg:px-8 lg:py-28;
+  @apply px-5 py-18 sm:px-6 md:py-24 lg:px-8 lg:py-28;
 }
 
 .section-title {
-  @apply max-w-3xl text-5xl leading-none md:text-6xl;
+  @apply text-5xl md:text-6xl;
 }
 
 .eyebrow {
-  @apply mb-4 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.28em];
+  @apply inline-flex items-center rounded-full border px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.3em];
+  border-color: rgba(143, 101, 88, 0.18);
+  background: rgba(255, 251, 246, 0.88);
   color: var(--accent-deep);
-  border-color: rgba(143, 99, 86, 0.18);
-  background: rgba(255, 251, 247, 0.78);
 }
 
-.glass-panel {
+.panel {
   background: var(--surface);
   border: 1px solid var(--stroke);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-lg);
   backdrop-filter: blur(18px);
 }
 
-.ornament-ring {
-  position: absolute;
-  border: 1px solid rgba(143, 99, 86, 0.14);
-  border-radius: 999px;
+.soft-panel {
+  background: rgba(255, 250, 245, 0.74);
+  border: 1px solid rgba(143, 101, 88, 0.12);
 }
 
 .cta-button {
-  @apply inline-flex items-center justify-center gap-3 rounded-full px-6 py-3.5 text-sm font-semibold tracking-[0.02em];
+  @apply inline-flex items-center justify-center gap-2.5 rounded-full px-5 py-3 text-[0.84rem] font-semibold;
   background: var(--accent);
   color: #fffaf7;
-  box-shadow: 0 18px 32px rgba(111, 74, 63, 0.2);
+  box-shadow: 0 18px 40px rgba(111, 79, 68, 0.2);
 }
 
 .cta-button:hover {
@@ -125,48 +122,40 @@ img {
 }
 
 .cta-button[data-variant="secondary"] {
-  background: rgba(255, 251, 247, 0.75);
+  background: rgba(255, 251, 247, 0.9);
   color: var(--accent-deep);
-  border: 1px solid rgba(143, 99, 86, 0.16);
+  border: 1px solid rgba(143, 101, 88, 0.16);
   box-shadow: none;
 }
 
-.soft-card {
-  @apply rounded-[2rem] border p-6 md:p-8;
-  background: rgba(255, 251, 246, 0.72);
-  border-color: rgba(143, 99, 86, 0.12);
+.floating-orbit {
+  animation: floating-orbit 7s ease-in-out infinite;
 }
 
-.fade-rise {
-  animation: fade-rise 700ms ease both;
+.floating-orbit-delay {
+  animation: floating-orbit 8s ease-in-out 1.2s infinite;
 }
 
-.fade-rise-delay {
-  animation: fade-rise 700ms 140ms ease both;
+.floating-orbit-delay-2 {
+  animation: floating-orbit 9s ease-in-out 0.5s infinite;
 }
 
-.fade-rise-delay-2 {
-  animation: fade-rise 700ms 280ms ease both;
+.carousel-track {
+  scrollbar-width: none;
 }
 
-.gallery-dialog::backdrop {
-  background: rgba(39, 26, 21, 0.72);
-  backdrop-filter: blur(10px);
+.carousel-track::-webkit-scrollbar {
+  display: none;
 }
 
-.faq-item[open] {
-  background: rgba(255, 251, 246, 0.94);
-}
-
-@keyframes fade-rise {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
+@keyframes floating-orbit {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    transform: translate3d(0, -12px, 0);
   }
 }
 
@@ -175,9 +164,9 @@ img {
     scroll-behavior: auto;
   }
 
-  .fade-rise,
-  .fade-rise-delay,
-  .fade-rise-delay-2 {
+  .floating-orbit,
+  .floating-orbit-delay,
+  .floating-orbit-delay-2 {
     animation: none;
   }
 }

@@ -1,0 +1,80 @@
+---
+import { Image } from "astro:assets";
+import { galleryItems, portfolioSection, processSteps } from "../data/site";
+---
+
+<section id="portfolio" class="section-shell">
+  <div class="mx-auto max-w-7xl">
+    <div class="max-w-3xl">
+      <span class="eyebrow">{portfolioSection.eyebrow}</span>
+      <h2 class="section-title mt-6">{portfolioSection.title}</h2>
+      <p class="mt-6 max-w-2xl text-lg leading-8">{portfolioSection.description}</p>
+    </div>
+
+    <div class="mt-12">
+      <div class="flex items-center justify-between gap-4">
+        <p class="text-sm uppercase tracking-[0.22em] text-[var(--accent-deep)]">Carrossel de fotos</p>
+        <div class="flex gap-3">
+          <button
+            type="button"
+            class="portfolio-prev inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(143,101,88,0.16)] bg-[rgba(255,251,247,0.9)] text-[var(--accent-deep)]"
+            aria-label="Voltar fotos"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            class="portfolio-next inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(143,101,88,0.16)] bg-[rgba(255,251,247,0.9)] text-[var(--accent-deep)]"
+            aria-label="Avancar fotos"
+          >
+            →
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel-track mt-6 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4" data-carousel-track>
+        {galleryItems.map((item) => (
+          <article class="panel min-w-[78vw] snap-center rounded-[2rem] p-3 sm:min-w-[24rem] lg:min-w-[26rem]">
+            <Image
+              src={item.image}
+              alt={item.alt}
+              class="h-[22rem] w-full rounded-[1.5rem] object-cover"
+              widths={[480, 640, 800]}
+              sizes="(max-width: 640px) 78vw, 26rem"
+            />
+            <p class="px-2 pb-2 pt-5 text-sm leading-7">{item.alt}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-14 grid gap-5 lg:grid-cols-4">
+      {processSteps.map((step) => (
+        <article class="soft-panel rounded-[2rem] p-6 md:p-7">
+          <p class="text-sm font-semibold tracking-[0.28em] text-[var(--accent)]">{step.number}</p>
+          <h3 class="mt-6 text-4xl text-[var(--text-main)]">{step.title}</h3>
+          <p class="mt-4 text-sm leading-7 md:text-base">{step.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector("[data-carousel-track]");
+  const prev = document.querySelector(".portfolio-prev");
+  const next = document.querySelector(".portfolio-next");
+
+  const moveCarousel = (direction) => {
+    if (!(track instanceof HTMLElement)) return;
+
+    const step = Math.min(track.clientWidth * 0.88, 420);
+    track.scrollBy({
+      left: direction * step,
+      behavior: "smooth"
+    });
+  };
+
+  prev?.addEventListener("click", () => moveCarousel(-1));
+  next?.addEventListener("click", () => moveCarousel(1));
+</script>

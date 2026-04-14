@@ -1,0 +1,73 @@
+---
+import { Image } from "astro:assets";
+import { galleryItems, heroContent, whatsappUrl } from "../data/site";
+import WhatsAppButton from "./ui/WhatsAppButton.astro";
+---
+
+<section id="inicio" class="section-shell overflow-hidden pt-4 sm:pt-8 lg:pt-6">
+  <div class="mx-auto grid max-w-7xl items-center gap-6 lg:min-h-[calc(100svh-9.5rem)] lg:grid-cols-[minmax(0,0.84fr)_minmax(0,0.94fr)] lg:gap-8 xl:min-h-[calc(100svh-10rem)] xl:gap-10">
+    <div class="mx-auto flex w-full max-w-[25.5rem] flex-col justify-center text-center lg:mx-0 lg:max-w-[26rem] lg:text-left xl:max-w-[28rem]">
+      <span class="eyebrow">{heroContent.eyebrow}</span>
+      <h1 class="mt-3 max-w-[10.5ch] self-center text-[clamp(2.55rem,8vw,4rem)] leading-[0.86] sm:text-[clamp(3rem,7vw,4.35rem)] lg:mt-4 lg:self-auto lg:text-[clamp(3.15rem,4.15vw,4.15rem)] xl:text-[clamp(3.6rem,4.6vw,4.8rem)]">
+        {heroContent.title}
+      </h1>
+      <p class="mt-3 max-w-[24rem] self-center text-[0.92rem] leading-5 sm:text-[0.95rem] sm:leading-6 lg:self-auto lg:text-[0.88rem] lg:leading-5 xl:max-w-[26rem] xl:text-[0.96rem] xl:leading-6">
+        {heroContent.description}
+      </p>
+      <p class="mt-2.5 max-w-[24rem] self-center text-[0.6rem] uppercase tracking-[0.16em] text-[var(--accent-deep)] sm:text-[0.66rem] lg:self-auto xl:text-[0.7rem]">
+        {heroContent.trust}
+      </p>
+
+      <div class="mt-5 flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start">
+        <WhatsAppButton href={whatsappUrl} label="Pedir bordado pelo WhatsApp" />
+        <a href="#portfolio" class="cta-button" data-variant="secondary">
+          Ver exemplos
+        </a>
+      </div>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-[30rem] min-h-[16rem] sm:min-h-[19rem] lg:min-h-[23rem] xl:max-w-[33rem] xl:min-h-[25rem]">
+      <div class="absolute inset-x-[13%] top-[5%] bottom-[10%] rounded-[2.3rem] bg-[radial-gradient(circle_at_top,rgba(217,190,179,0.5),transparent_58%)] sm:inset-x-[14%] lg:inset-x-[15%]"></div>
+
+      <div class="panel absolute inset-x-[16%] top-[7%] bottom-[7%] overflow-hidden rounded-[1.55rem] p-1.5 sm:inset-x-[18%] sm:rounded-[1.95rem] sm:p-2 lg:inset-x-[19%]">
+        <Image
+          src={galleryItems[8].image}
+          alt={galleryItems[8].alt}
+          class="h-full w-full rounded-[1.35rem] object-cover sm:rounded-[1.7rem]"
+          widths={[540, 720, 960, 1280]}
+          sizes="(max-width: 640px) 72vw, (max-width: 1024px) 56vw, 38rem"
+        />
+      </div>
+
+      <div class="panel absolute left-[6%] top-[3%] z-20 w-[26%] overflow-hidden rounded-[1.05rem] p-1 floating-orbit sm:left-[7%] sm:top-[6%] sm:w-[22%] sm:rounded-[1.35rem] sm:p-1.5">
+        <Image
+          src={galleryItems[1].image}
+          alt={galleryItems[1].alt}
+          class="aspect-[0.9] w-full rounded-[1.1rem] object-cover sm:rounded-[1.35rem]"
+          widths={[240, 360, 480]}
+          sizes="(max-width: 640px) 26vw, 20vw"
+        />
+      </div>
+
+      <div class="panel absolute right-[3%] top-[12%] z-20 w-[28%] overflow-hidden rounded-[1.05rem] p-1 floating-orbit-delay sm:right-[5%] sm:w-[23%] sm:rounded-[1.35rem] sm:p-1.5">
+        <Image
+          src={galleryItems[4].image}
+          alt={galleryItems[4].alt}
+          class="aspect-[0.92] w-full rounded-[1.1rem] object-cover sm:rounded-[1.35rem]"
+          widths={[240, 360, 480]}
+          sizes="(max-width: 640px) 28vw, 22vw"
+        />
+      </div>
+
+      <div class="panel absolute bottom-[2%] left-[11%] z-20 w-[18%] overflow-hidden rounded-[1rem] p-1 floating-orbit-delay-2 sm:bottom-[7%] sm:left-[9%] sm:w-[16%] sm:rounded-[1.25rem] sm:p-1.5">
+        <Image
+          src={galleryItems[7].image}
+          alt={galleryItems[7].alt}
+          class="aspect-square w-full rounded-[1.1rem] object-cover sm:rounded-[1.35rem]"
+          widths={[240, 360, 480]}
+          sizes="(max-width: 640px) 24vw, 18vw"
+        />
+      </div>
+    </div>
+  </div>
+</section>
