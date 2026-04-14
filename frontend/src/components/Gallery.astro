@@ -1,0 +1,89 @@
+---
+import { Image } from "astro:assets";
+import { galleryItems } from "../data/site";
+import SectionHeading from "./ui/SectionHeading.astro";
+---
+
+<section id="galeria" class="section-shell">
+  <div class="mx-auto max-w-7xl">
+    <SectionHeading
+      eyebrow="Portfólio"
+      title="Uma galeria pensada para valorizar textura, delicadeza e presença visual."
+      description="Cada imagem ajuda a transmitir o que torna um bordado artesanal especial: intenção, tempo e acabamento."
+    />
+
+    <div class="mt-14 grid auto-rows-[220px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {galleryItems.map((item, index) => (
+        <button
+          type="button"
+          class:list={[
+            "group glass-panel relative overflow-hidden rounded-[2rem] p-3 text-left",
+            index === 0 && "sm:col-span-2 sm:row-span-2",
+            index === 3 && "lg:row-span-2",
+            index === 6 && "sm:col-span-2"
+          ]}
+          data-gallery-open
+          data-src={item.image.src}
+          data-alt={item.alt}
+        >
+          <Image
+            src={item.image}
+            alt={item.alt}
+            class="h-full w-full rounded-[1.5rem] object-cover transition duration-500 group-hover:scale-[1.03]"
+            widths={[360, 540, 720, 960]}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
+          <span class="absolute inset-x-6 bottom-6 rounded-full bg-[rgba(40,24,18,0.68)] px-4 py-3 text-sm text-white/90 opacity-0 backdrop-blur-sm transition group-hover:opacity-100">
+            Ampliar imagem
+          </span>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <dialog class="gallery-dialog mx-auto w-[min(92vw,72rem)] rounded-[2rem] border border-white/10 bg-transparent p-0">
+    <div class="relative overflow-hidden rounded-[2rem] bg-[rgba(30,21,18,0.94)] p-4 md:p-6">
+      <button
+        type="button"
+        class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white"
+        data-gallery-close
+        aria-label="Fechar galeria"
+      >
+        ×
+      </button>
+      <img src="" alt="" class="max-h-[80vh] w-full rounded-[1.5rem] object-contain" data-gallery-image />
+      <p class="px-2 pt-4 text-sm text-white/75" data-gallery-caption></p>
+    </div>
+  </dialog>
+</section>
+
+<script>
+  const dialog = document.querySelector(".gallery-dialog");
+  const previewImage = dialog?.querySelector("[data-gallery-image]");
+  const previewCaption = dialog?.querySelector("[data-gallery-caption]");
+
+  document.querySelectorAll("[data-gallery-open]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      if (!(trigger instanceof HTMLElement) || !(previewImage instanceof HTMLImageElement) || !dialog) return;
+
+      previewImage.src = trigger.dataset.src ?? "";
+      previewImage.alt = trigger.dataset.alt ?? "";
+
+      if (previewCaption) {
+        previewCaption.textContent = trigger.dataset.alt ?? "";
+      }
+
+      dialog.showModal();
+    });
+  });
+
+  dialog?.querySelector("[data-gallery-close]")?.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog?.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
+</script>

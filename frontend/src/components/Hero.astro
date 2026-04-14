@@ -1,0 +1,93 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { brandName, heroHighlights, trustPill, whatsappUrl } from "../data/site";
+import WhatsAppButton from "./ui/WhatsAppButton.astro";
+
+interface Props {
+  heroImage: ImageMetadata;
+  supportingImage: ImageMetadata;
+  detailImage: ImageMetadata;
+}
+
+const { heroImage, supportingImage, detailImage } = Astro.props;
+---
+
+<section id="top" class="section-shell relative pt-12 sm:pt-16 lg:pt-20">
+  <div class="ornament-ring -left-16 top-24 h-44 w-44"></div>
+  <div class="ornament-ring right-0 top-12 h-28 w-28"></div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+    <div class="relative z-10">
+      <span class="eyebrow fade-rise">{trustPill}</span>
+      <h1 class="fade-rise-delay max-w-3xl text-6xl leading-[0.92] sm:text-7xl xl:text-[5.9rem]">
+        Bordados personalizados que transformam afeto em peça única.
+      </h1>
+      <p class="fade-rise-delay mt-8 max-w-2xl text-lg leading-8 md:text-xl">
+        O {brandName} cria bordados feitos à mão com delicadeza, acabamento premium e atendimento próximo
+        para quem quer presentear, decorar ou eternizar uma memória de forma especial.
+      </p>
+
+      <div class="fade-rise-delay-2 mt-10 flex flex-col gap-4 sm:flex-row">
+        <WhatsAppButton href={whatsappUrl} label="Conversar no WhatsApp" />
+        <a href="#galeria" class="cta-button" data-variant="secondary">
+          Ver portfólio
+        </a>
+      </div>
+
+      <ul class="fade-rise-delay-2 mt-12 grid gap-4 sm:grid-cols-3">
+        {heroHighlights.map((item) => (
+          <li class="soft-card text-sm leading-7">{item}</li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-2xl">
+      <div class="absolute -left-10 top-12 hidden h-36 w-36 rounded-full bg-[rgba(227,200,186,0.46)] blur-3xl lg:block"></div>
+      <div class="absolute -right-8 bottom-0 h-40 w-40 rounded-full bg-[rgba(143,99,86,0.12)] blur-3xl"></div>
+
+      <div class="grid gap-5 md:grid-cols-[1.1fr_0.72fr]">
+        <div class="glass-panel fade-rise relative overflow-hidden rounded-[2.4rem] p-3">
+          <div class="absolute inset-x-6 top-6 z-10 flex items-start justify-between rounded-full bg-[rgba(255,251,247,0.76)] px-4 py-3 text-xs uppercase tracking-[0.26em] text-[var(--accent-deep)]">
+            <span>Feito à mão</span>
+            <span>Peças sob encomenda</span>
+          </div>
+          <Image
+            src={heroImage}
+            alt="Bordado autoral em destaque no hero da Atelie DebysArt."
+            class="h-[28rem] w-full rounded-[2rem] object-cover object-center md:h-[34rem]"
+            widths={[480, 768, 960]}
+            sizes="(max-width: 1024px) 100vw, 42rem"
+          />
+        </div>
+
+        <div class="flex flex-col gap-5 pt-6 md:pt-12">
+          <div class="glass-panel fade-rise-delay overflow-hidden rounded-[2rem] p-3">
+            <Image
+              src={supportingImage}
+              alt="Peça bordada com composição delicada em destaque."
+              class="h-56 w-full rounded-[1.5rem] object-cover"
+              widths={[320, 480, 640]}
+              sizes="(max-width: 1024px) 60vw, 20rem"
+            />
+          </div>
+          <div class="soft-card fade-rise-delay-2 relative overflow-hidden">
+            <p class="text-sm uppercase tracking-[0.3em] text-[var(--accent-deep)]">Confiança em cada etapa</p>
+            <p class="mt-4 text-3xl text-[var(--text-main)]">
+              Atendimento direto com a artesã, orçamento personalizado e envio via Correios.
+            </p>
+          </div>
+          <div class="glass-panel fade-rise-delay-2 overflow-hidden rounded-[2rem] p-3">
+            <Image
+              src={detailImage}
+              alt="Close de detalhes do acabamento do bordado."
+              class="h-48 w-full rounded-[1.5rem] object-cover"
+              widths={[320, 480, 640]}
+              sizes="(max-width: 1024px) 60vw, 20rem"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

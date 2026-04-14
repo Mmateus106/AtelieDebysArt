@@ -1,0 +1,26 @@
+---
+import { testimonials } from "../data/site";
+import SectionHeading from "./ui/SectionHeading.astro";
+---
+
+<section class="section-shell">
+  <div class="mx-auto max-w-7xl">
+    <SectionHeading
+      eyebrow="Depoimentos"
+      title="Mensagens que reforçam o que a experiência deve transmitir: cuidado, encantamento e confiança."
+      description="Os textos abaixo são placeholders e devem ser substituídos por depoimentos reais de clientes."
+    />
+
+    <div class="mt-14 grid gap-5 lg:grid-cols-3">
+      {testimonials.map((item) => (
+        <blockquote class="soft-card flex h-full flex-col justify-between">
+          <p class="text-xl leading-8 text-[var(--text-main)]">“{item.quote}”</p>
+          <footer class="mt-8 border-t border-[rgba(143,99,86,0.12)] pt-5">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent-deep)]">{item.author}</p>
+            <p class="mt-2 text-sm">{item.context}</p>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>

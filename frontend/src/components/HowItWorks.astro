@@ -1,0 +1,28 @@
+---
+import { processSteps } from "../data/site";
+import SectionHeading from "./ui/SectionHeading.astro";
+---
+
+<section id="como-funciona" class="section-shell">
+  <div class="mx-auto max-w-7xl">
+    <SectionHeading
+      eyebrow="Como funciona"
+      title="Um processo simples, próximo e pensado para transformar sua ideia em uma peça especial."
+      description="Sem carrinho, sem automação fria: o pedido acontece em conversa direta, com clareza sobre personalização, prazo e envio."
+    />
+
+    <ol class="mt-14 grid gap-5 lg:grid-cols-5">
+      {processSteps.map((step, index) => (
+        <li class="soft-card relative min-h-[16rem]">
+          <span class="absolute left-6 top-6 text-sm font-semibold tracking-[0.3em] text-[var(--accent)]">
+            0{index + 1}
+          </span>
+          <div class="pt-12">
+            <h3 class="text-4xl text-[var(--text-main)]">{step.title}</h3>
+            <p class="mt-4 text-sm leading-7 md:text-base">{step.description}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
